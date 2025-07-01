@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva de Fabricación en Concreto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A tab-based navigation system to switch between the three core projects (Vibrating Table, Slab Molds, Pillar Molds). This design breaks the complex overall task into manageable, focused sections. Each section contains interactive diagrams built with HTML/CSS where hovering over components provides details, along with structured lists for materials and accordion-style steps for assembly. This structure was chosen to improve navigation and comprehension compared to a linear document, allowing users to easily access and process the specific information they need for each part of the build. -->
+    <!-- Visualization & Content Choices: Report's ASCII schematics are transformed into interactive diagrams (HTML/CSS/JS) for enhanced understanding; hovering reveals component details and dimensions. Material lists are presented as clear, icon-driven cards. Assembly instructions are in an accordion format to reduce cognitive load. This approach turns a static guide into an engaging, step-by-step tool. No Chart.js was needed as there is no comparative quantitative data. CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background-color: #f59e0b; /* amber-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .diagram-part {
+            transition: all 0.2s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .diagram-part:hover {
+            border-color: #f59e0b;
+            transform: scale(1.05);
+            z-index: 10;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Guía Interactiva de Fabricación</h1>
+            <p class="text-slate-600 mt-2">Planos interactivos para construir tu equipo de hormigón.</p>
+        </header>
+
+        <nav class="flex justify-center mb-8 bg-white p-2 rounded-xl shadow-md space-x-2">
+            <button class="tab-btn active w-1/3 py-2 px-4 rounded-lg font-semibold" data-tab="mesa">Mesa Vibradora</button>
+            <button class="tab-btn w-1/3 py-2 px-4 rounded-lg font-semibold" data-tab="placas">Moldes de Placas</button>
+            <button class="tab-btn w-1/3 py-2 px-4 rounded-lg font-semibold" data-tab="pilares">Moldes de Pilares</button>
+        </nav>
+
+        <main>
+            <!-- Sección Mesa Vibradora -->
+            <section id="mesa" class="content-section active">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4">Plano: Mesa Vibradora</h2>
+                    <p class="mb-6 text-slate-600">Esta sección detalla cómo construir una mesa vibradora para consolidar el hormigón, eliminando burbujas de aire para un acabado denso y profesional. Explora el diagrama interactivo, revisa los materiales y sigue los pasos de montaje.</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Diagrama Interactivo</h3>
+                            <div id="diagram-info-mesa" class="h-16 mb-4 p-3 bg-slate-100 rounded-lg text-slate-700 font-medium text-center flex items-center justify-center">Pasa el cursor sobre una parte del diagrama para ver los detalles.</div>
+                            <div class="relative w-full h-[400px] bg-slate-50 rounded-lg p-4 flex items-center justify-center">
+                                <!-- Chasis Base -->
+                                <div class="diagram-part absolute bottom-10 w-full h-16 bg-slate-300 rounded-md" data-info="Chasis Base: Estructura robusta con perfiles de 50x50x3mm. Proporciona estabilidad. Altura ergonómica de 800-900mm.">
+                                    <div class="absolute bottom-[-40px] left-4 w-4 h-10 bg-slate-400"></div>
+                                    <div class="absolute bottom-[-40px] right-4 w-4 h-10 bg-slate-400"></div>
+                                </div>
+                                <!-- Resortes -->
+                                <div class="diagram-part absolute bottom-28 left-8 w-6 h-8 bg-amber-400 rounded-full" data-info="Sistema de Suspensión: 4-6 resortes o amortiguadores de goma para aislar la vibración."></div>
+                                <div class="diagram-part absolute bottom-28 right-8 w-6 h-8 bg-amber-400 rounded-full" data-info="Sistema de Suspensión: 4-6 resortes o amortiguadores de goma para aislar la vibración."></div>
+                                <div class="diagram-part absolute bottom-28 left-1/2 -ml-3 w-6 h-8 bg-amber-400 rounded-full" data-info="Sistema de Suspensión: 4-6 resortes o amortiguadores de goma para aislar la vibración."></div>
+                                <!-- Plataforma Vibrante -->
+                                <div class="diagram-part absolute w-[90%] h-16 bg-slate-500 rounded-md top-24" data-info="Plataforma Vibrante: Superficie de acero de 4-6mm o contrachapado. Medidas ej: 1000x800mm."></div>
+                                <!-- Motor -->
+                                <div class="diagram-part absolute top-[160px] w-24 h-8 bg-slate-700 rounded" data-info="Motor Vibrador: Fijado en el centro inferior de la plataforma. Potencia recomendada: 0.5-1 HP."></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Materiales y Montaje</h3>
+                            <div class="space-y-4">
+                                <!-- Acordeón Materiales -->
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 font-semibold text-left">
+                                        <span>📋 Materiales Sugeridos</span>
+                                        <span class="transform transition-transform duration-300">▼</span>
+                                    </button>
+                                    <div class="accordion-content">
+                                        <ul class="p-4 pt-0 list-disc list-inside text-slate-600">
+                                            <li>Perfiles de acero (50x50x3mm)</li>
+                                            <li>Lámina de acero (4-6mm) o contrachapado</li>
+                                            <li>Resortes o amortiguadores de goma</li>
+                                            <li>Motor vibrador (0.5-1 HP)</li>
+                                            <li>Componentes eléctricos y tornillería</li>
+                                            <li>Pintura anticorrosiva</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Acordeón Montaje -->
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 font-semibold text-left">
+                                        <span>🛠️ Pasos de Montaje</span>
+                                        <span class="transform transition-transform duration-300">▼</span>
+                                    </button>
+                                    <div class="accordion-content">
+                                        <ol class="p-4 pt-0 space-y-2 list-decimal list-inside text-slate-600">
+                                            <li>Construir el chasis base y las patas.</li>
+                                            <li>Construir el marco de la plataforma vibrante.</li>
+                                            <li>Instalar el sistema de suspensión (resortes).</li>
+                                            <li>Fijar el motor vibrador en el centro inferior.</li>
+                                            <li>Realizar conexiones eléctricas y pintar.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Moldes de Placas -->
+            <section id="placas" class="content-section">
+                 <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4">Plano: Moldes para Placas</h2>
+                    <p class="mb-6 text-slate-600">Aquí encontrarás cómo fabricar moldes reutilizables para placas de concreto. Un buen molde es clave para obtener piezas uniformes y de calidad. Interactúa con el diagrama para entender su estructura.</p>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Diagrama Interactivo</h3>
+                            <div id="diagram-info-placas" class="h-16 mb-4 p-3 bg-slate-100 rounded-lg text-slate-700 font-medium text-center flex items-center justify-center">Pasa el cursor sobre una parte del diagrama para ver los detalles.</div>
+                            <div class="relative w-full h-[300px] bg-slate-50 rounded-lg p-4 flex items-center justify-center">
+                                <!-- Base -->
+                                <div class="diagram-part absolute w-full h-full bg-slate-300 rounded-lg" data-info="Base del Molde: Contrachapado de 15-18mm o lámina de acero de 3-5mm. Medidas ej: 600x600mm."></div>
+                                <!-- Contenido -->
+                                <div class="relative w-[80%] h-[80%] bg-slate-500 rounded-md" data-info="Espacio para Concreto: El concreto se vierte aquí.">
+                                    <!-- Lados -->
+                                    <div class="diagram-part absolute top-0 left-0 w-full h-4 bg-amber-500" data-info="Lado del Molde: Altura define el grosor de la placa (ej: 40-50mm)."></div>
+                                    <div class="diagram-part absolute bottom-0 left-0 w-full h-4 bg-amber-500" data-info="Lado del Molde: Altura define el grosor de la placa (ej: 40-50mm)."></div>
+                                    <div class="diagram-part absolute top-0 left-0 w-4 h-full bg-amber-500" data-info="Lado del Molde: Altura define el grosor de la placa (ej: 40-50mm)."></div>
+                                    <div class="diagram-part absolute top-0 right-0 w-4 h-full bg-amber-500" data-info="Lado del Molde: Altura define el grosor de la placa (ej: 40-50mm)."></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                             <h3 class="text-xl font-semibold mb-3">Materiales y Montaje</h3>
+                            <div class="space-y-4">
+                                <!-- Acordeón Materiales -->
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 font-semibold text-left">
+                                        <span>📋 Materiales Sugeridos</span>
+                                        <span class="transform transition-transform duration-300">▼</span>
+                                    </button>
+                                    <div class="accordion-content">
+                                        <ul class="p-4 pt-0 list-disc list-inside text-slate-600">
+                                            <li>Contrachapado marino (15-18mm) o acero.</li>
+                                            <li>Perfiles angulares de acero (ej: 30x30x3mm).</li>
+                                            <li>Tornillería o abrazaderas para desmolde.</li>
+                                            <li>Sellador de silicona y agente desmoldante.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Acordeón Montaje -->
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 font-semibold text-left">
+                                        <span>🛠️ Pasos de Montaje</span>
+                                        <span class="transform transition-transform duration-300">▼</span>
+                                    </button>
+                                    <div class="accordion-content">
+                                        <ol class="p-4 pt-0 space-y-2 list-decimal list-inside text-slate-600">
+                                            <li>Cortar la base a la medida deseada.</li>
+                                            <li>Cortar los 4 lados a la altura (grosor de placa).</li>
+                                            <li>Ensamblar los lados sobre la base (desarmable).</li>
+                                            <li>Sellar las juntas internas para evitar fugas.</li>
+                                            <li>Aplicar barniz (si es madera) y agente desmoldante.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Moldes de Pilares -->
+            <section id="pilares" class="content-section">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4">Plano: Moldes para Pilares</h2>
+                    <p class="mb-6 text-slate-600">Construye moldes robustos (encofrados) para pilares o columnas de concreto. La clave es una sujeción externa fuerte para resistir la presión del hormigón fresco. Revisa el diagrama y los pasos.</p>
+                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                             <h3 class="text-xl font-semibold mb-3">Diagrama Interactivo</h3>
+                            <div id="diagram-info-pilares" class="h-16 mb-4 p-3 bg-slate-100 rounded-lg text-slate-700 font-medium text-center flex items-center justify-center">Pasa el cursor sobre una parte del diagrama para ver los detalles.</div>
+                            <div class="relative w-full h-[400px] bg-slate-50 rounded-lg p-4 flex items-center justify-center">
+                                <!-- Pilar -->
+                                <div class="diagram-part relative w-40 h-full bg-slate-400 rounded-md" data-info="Paneles de Contrachapado: 4 paneles de 18-20mm de espesor. Medidas ej: 150x150mm.">
+                                    <div class="absolute inset-2 bg-slate-600 rounded-sm" data-info="Espacio para Concreto"></div>
+                                </div>
+                                <!-- Sujecion -->
+                                <div class="diagram-part absolute left-0 w-full h-6 bg-amber-500 top-1/4 rounded" data-info="Sujeción Externa (Crucial): Varillas roscadas o abrazaderas cada 300-500mm."></div>
+                                 <div class="diagram-part absolute left-0 w-full h-6 bg-amber-500 top-2/4 rounded" data-info="Sujeción Externa (Crucial): Varillas roscadas o abrazaderas cada 300-500mm."></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Materiales y Montaje</h3>
+                            <div class="space-y-4">
+                                <!-- Acordeón Materiales -->
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 font-semibold text-left">
+                                        <span>📋 Materiales Sugeridos</span>
+                                        <span class="transform transition-transform duration-300">▼</span>
+                                    </button>
+                                    <div class="accordion-content">
+                                        <ul class="p-4 pt-0 list-disc list-inside text-slate-600">
+                                            <li>Contrachapado marino (18-20mm).</li>
+                                            <li>Listones de madera (ej: 20x20mm) para refuerzos.</li>
+                                            <li>Varillas roscadas o abrazaderas metálicas.</li>
+                                            <li>Tornillería, sellador y agente desmoldante.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Acordeón Montaje -->
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 font-semibold text-left">
+                                        <span>🛠️ Pasos de Montaje</span>
+                                        <span class="transform transition-transform duration-300">▼</span>
+                                    </button>
+                                    <div class="accordion-content">
+                                        <ol class="p-4 pt-0 space-y-2 list-decimal list-inside text-slate-600">
+                                            <li>Cortar 4 paneles de contrachapado (2 más anchos que los otros 2).</li>
+                                            <li>Ensamblar los paneles para formar una caja.</li>
+                                            <li>Colocar refuerzos externos (abrazaderas o varillas).</li>
+                                            <li>Asegurar que la estructura esté rígida y nivelada.</li>
+                                            <li>Sellar juntas y aplicar agente desmoldante.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const sections = document.querySelectorAll('.content-section');
+            const accordions = document.querySelectorAll('.accordion-item');
+
+            // Tab navigation
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const targetSectionId = tab.dataset.tab;
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === targetSectionId) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Accordion functionality
+            accordions.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = header.querySelector('span:last-child');
+                
+                header.addEventListener('click', () => {
+                    // Close other accordions in the same group
+                    item.parentElement.querySelectorAll('.accordion-item').forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                            otherItem.querySelector('.accordion-header span:last-child').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle current accordion
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+            
+            // Diagram hover functionality
+            const setupDiagramHover = (sectionId) => {
+                const section = document.getElementById(sectionId);
+                const diagramParts = section.querySelectorAll('.diagram-part');
+                const infoBox = document.getElementById(`diagram-info-${sectionId}`);
+                const defaultText = infoBox.textContent;
+
+                diagramParts.forEach(part => {
+                    part.addEventListener('mouseover', () => {
+                        infoBox.textContent = part.dataset.info;
+                    });
+                    part.addEventListener('mouseout', () => {
+                        infoBox.textContent = defaultText;
+                    });
+                });
+            };
+
+            setupDiagramHover('mesa');
+            setupDiagramHover('placas');
+            setupDiagramHover('pilares');
+        });
+    </script>
+</body>
+</html>
